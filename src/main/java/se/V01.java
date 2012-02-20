@@ -48,7 +48,7 @@ public class V01 {
 
 
         /** Створення класу, який спочатку поверне вершину дерева об’єктів
-         * @param weighted деякий об’єкт, що може вмішувати інші */
+         * @param from деякий об’єкт, що може вмішувати інші */
         public WeightedNavigator(Weighted from) {
             treePath.addLast(from);
             positions.addLast(-1);
