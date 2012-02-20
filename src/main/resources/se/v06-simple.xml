@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	   xmlns:sec="http://www.springframework.org/schema/security"
+	   xmlns:context="http://www.springframework.org/schema/context"
+	   xsi:schemaLocation=
+			   "http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.5.xsd http://www.springframework.org/schema/security http://www.springframework.org/schema/security/spring-security-2.0.4.xsd http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd"
+	   default-init-method="start"
+	   default-destroy-method="stop">
+    <bean id="creator" class="se.V06$WeightedCreator" />
+
+    <bean id="root" factory-bean="creator" factory-method="createWithNested">
+        <constructor-arg value="1.0"/>
+        <constructor-arg>
+            <list>
+                <bean factory-bean="creator"
+                      factory-method="createSimple">
+                    <constructor-arg value="2.0"/>
+                </bean>
+                <bean factory-bean="creator"
+                      factory-method="createWithNested">
+                    <constructor-arg value="3.0"/>
+                    <constructor-arg>
+                        <list>
+                            <bean factory-bean="creator"
+                                  factory-method="createSimpleRepeated">
+                                <constructor-arg value="1.0"/>
+                                <constructor-arg value="4"/>
+                            </bean>
+                        </list>
+                    </constructor-arg>
+                </bean>
+            </list>
+        </constructor-arg>
+    </bean>
+</beans>

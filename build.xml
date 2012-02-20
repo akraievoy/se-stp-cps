@@ -1,0 +1,272 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="se-cp" default="all">
+
+
+    <property file="build.properties"/>
+    <!-- Uncomment the following property if no tests compilation is needed -->
+    <!--
+   <property name="skip.tests" value="true"/>
+    -->
+
+    <!-- Compiler options -->
+
+    <property name="compiler.debug" value="on"/>
+    <property name="compiler.generate.no.warnings" value="off"/>
+    <property name="compiler.args" value="-target 1.5"/>
+    <property name="compiler.max.memory" value="128m"/>
+    <patternset id="ignored.files">
+        <exclude name="**/CVS/**"/>
+        <exclude name="**/SCCS/**"/>
+        <exclude name="**/RCS/**"/>
+        <exclude name="**/rcs/**"/>
+        <exclude name="**/.DS_Store/**"/>
+        <exclude name="**/.svn/**"/>
+        <exclude name="**/.pyc/**"/>
+        <exclude name="**/.pyo/**"/>
+        <exclude name="**/*.pyc/**"/>
+        <exclude name="**/*.pyo/**"/>
+        <exclude name="**/.git/**"/>
+        <exclude name="**/*.hprof/**"/>
+        <exclude name="**/_svn/**"/>
+        <exclude name="**/.hg/**"/>
+        <exclude name="**/*.lib/**"/>
+        <exclude name="**/*~/**"/>
+        <exclude name="**/__pycache__/**"/>
+        <exclude name="**/.bundle/**"/>
+        <exclude name="**/*.rbc/**"/>
+    </patternset>
+    <patternset id="library.patterns">
+        <include name="*.zip"/>
+        <include name="*.apk"/>
+        <include name="*.war"/>
+        <include name="*.egg"/>
+        <include name="*.ear"/>
+        <include name="*.swc"/>
+        <include name="*.jar"/>
+    </patternset>
+    <patternset id="compiler.resources">
+        <include name="**/?*.properties"/>
+        <include name="**/?*.xml"/>
+        <include name="**/?*.gif"/>
+        <include name="**/?*.png"/>
+        <include name="**/?*.jpeg"/>
+        <include name="**/?*.jpg"/>
+        <include name="**/?*.html"/>
+        <include name="**/?*.dtd"/>
+        <include name="**/?*.tld"/>
+        <include name="**/?*.ftl"/>
+    </patternset>
+
+    <!-- Project Libraries -->
+    <path id="library.maven:_org.codehaus.jackson:jackson-core-lgpl:1.6.1.classpath">
+        <pathelement
+                location="${path.variable.maven_repository}/org/codehaus/jackson/jackson-core-lgpl/1.6.1/jackson-core-lgpl-1.6.1.jar"/>
+    </path>
+
+    <path id="library.maven:_org.codehaus.jackson:jackson-mapper-lgpl:1.6.1.classpath">
+        <pathelement
+                location="${path.variable.maven_repository}/org/codehaus/jackson/jackson-mapper-lgpl/1.6.1/jackson-mapper-lgpl-1.6.1.jar"/>
+    </path>
+
+    <path id="library.maven:_org.slf4j:jcl-over-slf4j:1.5.2.classpath">
+        <pathelement
+                location="${path.variable.maven_repository}/org/slf4j/jcl-over-slf4j/1.5.2/jcl-over-slf4j-1.5.2.jar"/>
+    </path>
+
+    <path id="library.maven:_org.slf4j:slf4j-api:1.4.3.classpath">
+        <pathelement
+                location="${path.variable.maven_repository}/org/slf4j/slf4j-api/1.4.3/slf4j-api-1.4.3.jar"/>
+    </path>
+
+    <path id="library.maven:_org.slf4j:slf4j-simple:1.4.3.classpath">
+        <pathelement
+                location="${path.variable.maven_repository}/org/slf4j/slf4j-simple/1.4.3/slf4j-simple-1.4.3.jar"/>
+    </path>
+
+    <path id="library.maven:_org.springframework:spring-beans:2.5.6.classpath">
+        <pathelement
+                location="${path.variable.maven_repository}/org/springframework/spring-beans/2.5.6/spring-beans-2.5.6.jar"/>
+    </path>
+
+    <path id="library.maven:_org.springframework:spring-context:2.5.6.classpath">
+        <pathelement
+                location="${path.variable.maven_repository}/org/springframework/spring-context/2.5.6/spring-context-2.5.6.jar"/>
+    </path>
+
+    <path id="library.maven:_org.springframework:spring-core:2.5.6.classpath">
+        <pathelement
+                location="${path.variable.maven_repository}/org/springframework/spring-core/2.5.6/spring-core-2.5.6.jar"/>
+    </path>
+
+    <path id="library.maven:_org.testng:testng:6.3.1.classpath">
+        <pathelement
+                location="${path.variable.maven_repository}/org/testng/testng/6.3.1/testng-6.3.1.jar"/>
+    </path>
+
+
+    <!-- Application Server Libraries -->
+
+    <!-- Modules -->
+
+    <!-- Module se-cp -->
+    <dirname property="module.se-cp.basedir" file="${ant.file}"/>
+
+    <property name="compiler.args.se-cp" value="${compiler.args}"/>
+
+    <property name="se-cp.output.dir"
+              value="${module.se-cp.basedir}/target/classes"/>
+    <property name="se-cp.testoutput.dir"
+              value="${module.se-cp.basedir}/target/test-classes"/>
+
+    <path id="se-cp.module.bootclasspath">
+        <!-- Paths to be included in compilation bootclasspath -->
+    </path>
+
+    <path id="se-cp.module.production.classpath">
+        <path refid="library.maven:_org.slf4j:slf4j-api:1.4.3.classpath"/>
+        <path refid="library.maven:_org.slf4j:slf4j-simple:1.4.3.classpath"/>
+        <path refid="library.maven:_org.testng:testng:6.3.1.classpath"/>
+        <path refid="library.maven:_org.codehaus.jackson:jackson-core-lgpl:1.6.1.classpath"/>
+        <path refid="library.maven:_org.codehaus.jackson:jackson-mapper-lgpl:1.6.1.classpath"/>
+        <path refid="library.maven:_org.slf4j:jcl-over-slf4j:1.5.2.classpath"/>
+        <path refid="library.maven:_org.springframework:spring-context:2.5.6.classpath"/>
+        <path refid="library.maven:_org.springframework:spring-beans:2.5.6.classpath"/>
+        <path refid="library.maven:_org.springframework:spring-core:2.5.6.classpath"/>
+    </path>
+
+    <path id="se-cp.runtime.production.module.classpath">
+        <pathelement location="${se-cp.output.dir}"/>
+        <path refid="library.maven:_org.slf4j:slf4j-api:1.4.3.classpath"/>
+        <path refid="library.maven:_org.slf4j:slf4j-simple:1.4.3.classpath"/>
+        <path refid="library.maven:_org.testng:testng:6.3.1.classpath"/>
+        <path refid="library.maven:_org.codehaus.jackson:jackson-core-lgpl:1.6.1.classpath"/>
+        <path refid="library.maven:_org.codehaus.jackson:jackson-mapper-lgpl:1.6.1.classpath"/>
+        <path refid="library.maven:_org.slf4j:jcl-over-slf4j:1.5.2.classpath"/>
+        <path refid="library.maven:_org.springframework:spring-context:2.5.6.classpath"/>
+        <path refid="library.maven:_org.springframework:spring-beans:2.5.6.classpath"/>
+        <path refid="library.maven:_org.springframework:spring-core:2.5.6.classpath"/>
+    </path>
+
+    <path id="se-cp.module.classpath">
+        <pathelement location="${se-cp.output.dir}"/>
+        <path refid="library.maven:_org.slf4j:slf4j-api:1.4.3.classpath"/>
+        <path refid="library.maven:_org.slf4j:slf4j-simple:1.4.3.classpath"/>
+        <path refid="library.maven:_org.testng:testng:6.3.1.classpath"/>
+        <path refid="library.maven:_org.codehaus.jackson:jackson-core-lgpl:1.6.1.classpath"/>
+        <path refid="library.maven:_org.codehaus.jackson:jackson-mapper-lgpl:1.6.1.classpath"/>
+        <path refid="library.maven:_org.slf4j:jcl-over-slf4j:1.5.2.classpath"/>
+        <path refid="library.maven:_org.springframework:spring-context:2.5.6.classpath"/>
+        <path refid="library.maven:_org.springframework:spring-beans:2.5.6.classpath"/>
+        <path refid="library.maven:_org.springframework:spring-core:2.5.6.classpath"/>
+    </path>
+
+    <path id="se-cp.runtime.module.classpath">
+        <pathelement location="${se-cp.testoutput.dir}"/>
+        <pathelement location="${se-cp.output.dir}"/>
+        <path refid="library.maven:_org.slf4j:slf4j-api:1.4.3.classpath"/>
+        <path refid="library.maven:_org.slf4j:slf4j-simple:1.4.3.classpath"/>
+        <path refid="library.maven:_org.testng:testng:6.3.1.classpath"/>
+        <path refid="library.maven:_org.codehaus.jackson:jackson-core-lgpl:1.6.1.classpath"/>
+        <path refid="library.maven:_org.codehaus.jackson:jackson-mapper-lgpl:1.6.1.classpath"/>
+        <path refid="library.maven:_org.slf4j:jcl-over-slf4j:1.5.2.classpath"/>
+        <path refid="library.maven:_org.springframework:spring-context:2.5.6.classpath"/>
+        <path refid="library.maven:_org.springframework:spring-beans:2.5.6.classpath"/>
+        <path refid="library.maven:_org.springframework:spring-core:2.5.6.classpath"/>
+    </path>
+
+    <patternset id="excluded.from.module.se-cp">
+        <patternset refid="ignored.files"/>
+    </patternset>
+
+    <patternset id="excluded.from.compilation.se-cp">
+        <patternset refid="excluded.from.module.se-cp"/>
+    </patternset>
+
+    <path id="se-cp.module.sourcepath">
+        <dirset dir="${module.se-cp.basedir}">
+            <include name="src/main/java"/>
+            <include name="src/main/resources"/>
+        </dirset>
+    </path>
+
+    <path id="se-cp.module.test.sourcepath">
+        <dirset dir="${module.se-cp.basedir}">
+            <include name="src/test/java"/>
+        </dirset>
+    </path>
+
+    <target name="compile.module.se-cp"
+            depends="compile.module.se-cp.production,compile.module.se-cp.tests"
+            description="Compile module se-cp"/>
+
+    <target name="compile.module.se-cp.production"
+            description="Compile module se-cp; production classes">
+        <mkdir dir="${se-cp.output.dir}"/>
+        <javac destdir="${se-cp.output.dir}"
+               debug="${compiler.debug}"
+               nowarn="${compiler.generate.no.warnings}"
+               memorymaximumsize="${compiler.max.memory}"
+               fork="true">
+            <compilerarg line="${compiler.args.se-cp}"/>
+            <bootclasspath refid="se-cp.module.bootclasspath"/>
+            <classpath refid="se-cp.module.production.classpath"/>
+            <src refid="se-cp.module.sourcepath"/>
+            <patternset refid="excluded.from.compilation.se-cp"/>
+        </javac>
+
+        <copy todir="${se-cp.output.dir}">
+            <fileset dir="${module.se-cp.basedir}/src/main/java">
+                <patternset refid="compiler.resources"/>
+                <type type="file"/>
+            </fileset>
+            <fileset dir="${module.se-cp.basedir}/src/main/resources">
+                <patternset refid="compiler.resources"/>
+                <type type="file"/>
+            </fileset>
+        </copy>
+    </target>
+
+    <target name="compile.module.se-cp.tests"
+            depends="compile.module.se-cp.production"
+            description="compile module se-cp; test classes"
+            unless="skip.tests">
+        <mkdir dir="${se-cp.testoutput.dir}"/>
+        <javac destdir="${se-cp.testoutput.dir}"
+               debug="${compiler.debug}"
+               nowarn="${compiler.generate.no.warnings}"
+               memorymaximumsize="${compiler.max.memory}"
+               fork="true">
+            <compilerarg line="${compiler.args.se-cp}"/>
+            <bootclasspath refid="se-cp.module.bootclasspath"/>
+            <classpath refid="se-cp.module.classpath"/>
+            <src refid="se-cp.module.test.sourcepath"/>
+            <patternset refid="excluded.from.compilation.se-cp"/>
+        </javac>
+
+        <copy todir="${se-cp.testoutput.dir}">
+            <fileset dir="${module.se-cp.basedir}/src/test/java">
+                <patternset refid="compiler.resources"/>
+                <type type="file"/>
+            </fileset>
+        </copy>
+    </target>
+
+    <target name="clean.module.se-cp" description="cleanup module">
+        <delete dir="${se-cp.output.dir}"/>
+        <delete dir="${se-cp.testoutput.dir}"/>
+    </target>
+
+    <target name="init" description="Build initialization">
+        <!-- Perform any build initialization in this target -->
+    </target>
+
+    <target name="clean"
+            depends="clean.module.se-cp"
+            description="cleanup all"/>
+
+    <target name="build.modules"
+            depends="init, clean, compile.module.se-cp"
+            description="build all modules"/>
+
+    <target name="all" depends="build.modules" description="build all"/>
+</project>

@@ -1,0 +1,18 @@
+<component name="libraryTable">
+  <library name="projectlibs">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/lib/jackson-core-lgpl-1.6.1.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/jackson-mapper-lgpl-1.6.1.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/jcl-over-slf4j-1.5.2.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/junit-3.8.2.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/slf4j-api-1.4.3.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/slf4j-simple-1.4.3.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/spring-beans-2.5.6.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/spring-context-2.5.6.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/spring-core-2.5.6.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/testng-6.3.1.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

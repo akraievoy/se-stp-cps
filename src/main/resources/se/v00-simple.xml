@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	   xmlns:sec="http://www.springframework.org/schema/security"
+	   xmlns:context="http://www.springframework.org/schema/context"
+	   xsi:schemaLocation=
+			   "http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.5.xsd http://www.springframework.org/schema/security http://www.springframework.org/schema/security/spring-security-2.0.4.xsd http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd"
+	   default-init-method="start"
+	   default-destroy-method="stop">
+<!--
+    wTree = new WeightedImpl(
+            1,
+            //  один простий об’єкт
+            new WeightedImpl(2),
+            //  об’єкт котрий має ще один вкладений
+            new WeightedImpl(3, new WeightedImpl(4))
+    );
+-->
+
+<!--
+    //  обгортаємо один з об’єктів у реалізацію об’єкта аудитора
+    audit = new WeightedAudit(new WeightedImpl(2)),
+-->
+    <bean id="audit" class="se.V00$WeightedAudit">
+        <constructor-arg>
+            <bean class="se.V00$WeightedImpl">
+                <constructor-arg value="2.0"/>
+            </bean>
+        </constructor-arg>
+    </bean>
+
+<!--
+    wTree = new WeightedImpl(
+            1,
+            //  один простий об’єкт
+            new WeightedImpl(2),
+            audit = ...,
+            //  об’єкт котрий має ще один вкладений
+            new WeightedImpl(3, new WeightedImpl(4))
+    );
+-->
+    <bean id="root" class="se.V00$WeightedImpl">
+        <constructor-arg value="1.0"/>
+        <constructor-arg>
+            <list>
+                <bean class="se.V00$WeightedImpl">
+                    <constructor-arg value="2.0"/>
+                </bean>
+                <ref bean="audit"/>
+                <bean class="se.V00$WeightedImpl">
+                    <constructor-arg value="3.0"/>
+                    <constructor-arg>
+                        <list>
+                            <bean class="se.V00$WeightedImpl">
+                                <constructor-arg value="4.0"/>
+                            </bean>
+                        </list>
+                    </constructor-arg>
+                </bean>
+            </list>
+        </constructor-arg>
+    </bean>
+</beans>
