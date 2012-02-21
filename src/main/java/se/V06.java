@@ -109,7 +109,7 @@ public class V06 {
     }
 
     public static void main(String[] args) {
-        //  створення об’єкту для створення об’єктів Weighted
+        //  створення об’єкту для створення об’єктів Weighted ;)
         final WeightedCreator creator = new WeightedCreator();
 
         //  тестова ієрархія об’єктів, кореневий з вагою 1 і двома вкладеними
