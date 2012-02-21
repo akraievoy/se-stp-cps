@@ -30,14 +30,6 @@ public class V06 {
         Weighted[] nested;
 
         /**
-         * Створення об’єкту з пустим масивом посилань на вкладені об’єкти
-         * @param weight вага об’єкту
-         */
-        public WeightedImpl(double weight) {
-            this(weight, new Weighted[0]);
-        }
-
-        /**
          * Створення об’єкту з деякими вкладеними об’єктами
          * @param weight вага об’єкту
          * @param nested масив посилань на вкладені об’єкти
