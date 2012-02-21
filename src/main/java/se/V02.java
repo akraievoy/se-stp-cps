@@ -21,8 +21,11 @@ public class V02 {
             return weight;
         }
 
-        /** Обхід дерева об’єктів з викликом
-         *  заданої Callback-функції для кожного */
+        /**
+         * Обхід дерева об’єктів з викликом заданої Callback-функції для кожного
+         *
+         * @param wa Callback-функція, що викликається для кожного об’єкта
+         */
         public void analyzeAll(WeightedAnalyzer wa) {
             wa.analyze(this);
             for (Weighted w : nested) {
