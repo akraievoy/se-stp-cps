@@ -107,24 +107,44 @@ public class V03 {
         }
     }
 
+    /** Об’єкт, що має деяку вагу */
     public static class Weighted {
+        /**
+         * Властивість, що зберігає массу об’єкту
+         */
         double weight;
+        /**
+         * Властивість, що зберігає алгоритм зміни маси об’єкту
+         */
         WeightAlgo algo = new WeightAlgoConstant();
+        /**
+         * Вкладені об’єкти
+         */
         Weighted[] nested;
 
-        public Weighted(double weight) {
-            this(weight, new Weighted[0]);
-        }
-
-        public Weighted(double weight, Weighted[] nested) {
+        /**
+         * Створення об’єкту з деякими вкладеними об’єктами
+         * @param weight вага об’єкту
+         * @param nested масив посилань на вкладені об’єкти
+         */
+        public Weighted(double weight, Weighted... nested) {
             this.weight = weight;
             this.nested = nested;
         }
 
+        /**
+         * Повертає значення ваги об’єкта без урахування вкладених
+         * @return вага, сила у Ньютонах
+         */
         public double getWeight() {
             return weight;
         }
 
+        /**
+         * Повертає значення ваги з урахуванням ваги вкладених об’єктів
+         * @param orbitProgression фаза руху по орбіті, від 0 до 1
+         * @return вага, сила у Ньютонах
+         */
         public double computeWeight(final double orbitProgression) {
             double total = algo.computeWeight(orbitProgression, getWeight());
 
@@ -135,6 +155,11 @@ public class V03 {
             return total;
         }
 
+        /**
+         * Змінює алгоритм підрахунку маси об’єкту
+         * @param algo новий алгоритм
+         * @return той самий об’єкт
+         */
         public Weighted algo(WeightAlgo algo) {
             this.algo = algo;
             return this;
@@ -142,22 +167,24 @@ public class V03 {
     }
 
     public static void main(String[] args) {
-
+        //  тестовий приклад, кореневий об’єкт з постіною вагою 1
         final Weighted wTree = new Weighted(
                 1,
-                new Weighted[]{
-                        new Weighted(2).algo(new WeightAlgoDisposable(0.5)),    //	moon landing module
-                        new Weighted(
-                                3,
-                                new Weighted[]{
-                                        new Weighted(4).algo(new WeightAlgoExhaustable(0.8))    //	fuel
-                                }
-                        )
-                }
-        );
+                //  moon landing module, з вагою 2
+                new Weighted(2).algo(new WeightAlgoDisposable(0.5)),
+                //  другий вкладений об’єкт з вагою 3
+                new Weighted(
+                        3,
+                        //  об’єкт з рівнем вкладеності 2, що
+                        //      буде повністю використаний до фази = 0.8
+                        new Weighted(4).algo(new WeightAlgoExhaustable(0.8))
+                ));
 
+        //  --> 10.0
         System.out.println("total weight on start: " + wTree.computeWeight(0));
+        //  --> 8.0
         System.out.println("total weight near moon landing: " + wTree.computeWeight(0.4));
+        //  --> 4.0
         System.out.println("total weight near landing on earth: " + wTree.computeWeight(0.9));
     }
 }

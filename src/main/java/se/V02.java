@@ -6,12 +6,11 @@ public class V02 {
         double weight;
         Weighted[] nested;
 
-        /** Створення екземляра класу без вкладених об’єктів
-         * @param weight вага об’єкту */
-        public Weighted(double weight) {
-            this(weight, new Weighted[0]);
-        }
-
+        /**
+         * Створення екземляра класу без вкладених об’єктів
+         * @param weight вага об’єкту
+         * @param nested масив вкладених об’єктів
+         */
         public Weighted(double weight, Weighted... nested) {
             this.weight = weight;
             this.nested = nested;
