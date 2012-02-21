@@ -1,6 +1,38 @@
 package se;
 
 public class V04 {
+    public static class Weighted {
+        double weight;
+        Weighted[] nested;
+
+        public Weighted(double weight) {
+            this(weight, new Weighted[0]);
+        }
+
+        public Weighted(double weight, Weighted[] nested) {
+            this.weight = weight;
+            this.nested = nested;
+        }
+
+        public double getWeight() {
+            return weight;
+        }
+
+        public void setWeight(double weight) {
+            this.weight = weight;
+        }
+
+        public double computeWeight() {
+            double total = getWeight();
+
+            for (Weighted w : nested) {
+                total += w.computeWeight();
+            }
+
+            return total;
+        }
+    }
+
     public static interface WeightedModifier {
         void apply();
 
@@ -40,38 +72,6 @@ public class V04 {
 
         public void rollback() {
             rollbackRecursively(root);
-        }
-    }
-
-    public static class Weighted {
-        double weight;
-        Weighted[] nested;
-
-        public Weighted(double weight) {
-            this(weight, new Weighted[0]);
-        }
-
-        public Weighted(double weight, Weighted[] nested) {
-            this.weight = weight;
-            this.nested = nested;
-        }
-
-        public double getWeight() {
-            return weight;
-        }
-
-        public void setWeight(double weight) {
-            this.weight = weight;
-        }
-
-        public double computeWeight() {
-            double total = getWeight();
-
-            for (Weighted w : nested) {
-                total += w.computeWeight();
-            }
-
-            return total;
         }
     }
 
