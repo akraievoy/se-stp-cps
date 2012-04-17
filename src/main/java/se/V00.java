@@ -149,7 +149,7 @@ public class V00 {
                     new ClassPathXmlApplicationContext(
                             //  генеруємо повний шлях до ресурсу
                             //    що описує контекст з компонентами
-                            "secp05/var00-" + args[0] + ".xml"
+                            "se/var00-" + args[0] + ".xml"
                     );
 
             //  компонента з id=root є кореневим елементом дерева об’єктів
