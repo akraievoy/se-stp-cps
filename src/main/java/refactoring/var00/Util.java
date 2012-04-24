@@ -1,4 +1,4 @@
-package var00;
+package refactoring.var00;
 
 /**
  * LATER add javadocs for a class created by anton

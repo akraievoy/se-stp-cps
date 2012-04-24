@@ -1,4 +1,4 @@
-package var03;
+package refactoring.var03;
 
 interface Powers {
     long at(int pos);
