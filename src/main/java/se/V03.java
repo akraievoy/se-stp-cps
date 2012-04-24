@@ -133,6 +133,18 @@ public class V03 {
         }
 
         /**
+         * Створення об’єкту з деякими вкладеними об’єктами
+         * @param weight вага об’єкту
+         * @param algo алгоритм зміни маси об’єкту
+         * @param nested масив посилань на вкладені об’єкти
+         */
+        public Weighted(double weight, WeightAlgo algo, Weighted... nested) {
+            this(weight, nested);
+
+            this.algo = algo;
+        }
+
+        /**
          * Повертає значення ваги об’єкта без урахування вкладених
          * @return вага, сила у Ньютонах
          */
